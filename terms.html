@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | FounderBolt</title>
+    <link rel="icon" type="image/x-icon" href="bolt.png">
+    <link rel="shortcut icon" type="image/x-icon" href="bolt.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles & Variables - Matching the main site */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #7c3aed;
+            --accent: #f59e0b;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+            --lighter: #ffffff;
+            --gray: #64748b;
+            --gray-light: #cbd5e1;
+            --success: #10b981;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --gradient-light: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.025em;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 2.5rem 0 1.5rem;
+            color: var(--dark);
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            color: var(--dark);
+        }
+
+        p {
+            color: var(--gray);
+            margin-bottom: 1.25rem;
+        }
+
+        ul, ol {
+            margin: 1rem 0 1.5rem 1.5rem;
+            color: var(--gray);
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 3rem 0;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            position: relative;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo-icon {
+            background: var(--gradient);
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Header Section */
+        .tos-header {
+            background: var(--lighter);
+            padding: 4rem 0;
+            text-align: center;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .last-updated {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Content Section */
+        .tos-content {
+            background: var(--lighter);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .tos-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .tos-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-box {
+            background: var(--gradient-light);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 1.5rem;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        th {
+            background: var(--gradient-light);
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        /* Quick Navigation */
+        .quick-nav {
+            background: var(--lighter);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 2rem;
+            z-index: 10;
+        }
+
+        .quick-nav h3 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .quick-nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .quick-nav-link {
+            background: var(--gradient-light);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .quick-nav-link:hover, .quick-nav-link.active {
+            background: var(--gradient);
+            color: white;
+        }
+
+        /* Acceptance Section */
+        .acceptance-section {
+            background: var(--gradient-light);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .acceptance-checkbox {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+        }
+
+        .checkbox-input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+
+        .checkbox-label {
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .continue-button {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .continue-button.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .continue-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .footer-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+
+        .footer-brand {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 1rem;
+        }
+
+        .tagline {
+            color: var(--gray-light);
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-column {
+            min-width: 150px;
+        }
+
+        .footer-column h4 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            margin: 0;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-column a {
+            color: var(--gray-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .copyright {
+            color: var(--gray-light);
+            font-size: 0.875rem;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-legal a {
+            color: var(--gray-light);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: var(--transition);
+        }
+
+        .footer-legal a:hover {
+            color: white;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--gradient);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Progress Indicator */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: var(--gradient);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Print Styles */
+        @media print {
+            .quick-nav, .back-to-top, .acceptance-section {
+                display: none;
+            }
+            
+            .tos-content {
+                box-shadow: none;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            h1 {
+                font-size: 2.25rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .tos-content {
+                padding: 2rem;
+            }
+            
+            .quick-nav {
+                position: static;
+            }
+            
+            .footer-main {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .footer-links {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .tos-content {
+                padding: 1.5rem;
+            }
+            
+            .quick-nav-links {
+                flex-direction: column;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .back-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="container">
+        <nav>
+             <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                FounderBolt
+            </a>
+
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#how-it-works" class="nav-link">How It Works</a>
+                <a href="index.html#waitlist" class="nav-link">Waitlist</a>
+                <a href="privacy.html" class="nav-link">Privacy Policy</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Header Section -->
+    <section class="tos-header">
+        <div class="container">
+            <h1>Terms of Service</h1>
+            <p>Please read these terms carefully before using FounderBolt</p>
+            <p class="last-updated">Last updated: August 2, 2025</p>
+        </div>
+    </section>
+
+    <!-- Quick Navigation -->
+    <div class="container">
+        <div class="quick-nav">
+            <h3>Quick Navigation</h3>
+            <div class="quick-nav-links">
+                <a href="#acceptance" class="quick-nav-link">Acceptance</a>
+                <a href="#services" class="quick-nav-link">Our Services</a>
+                <a href="#accounts" class="quick-nav-link">User Accounts</a>
+                <a href="#intellectual" class="quick-nav-link">Intellectual Property</a>
+                <a href="#payments" class="quick-nav-link">Payments</a>
+                <a href="#termination" class="quick-nav-link">Termination</a>
+                <a href="#liability" class="quick-nav-link">Liability</a>
+                <a href="#governing" class="quick-nav-link">Governing Law</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Section -->
+    <section class="tos-content">
+        <div class="container">
+            <div class="tos-section">
+                <h2 id="introduction">Introduction</h2>
+                <p>Welcome to FounderBolt ("we," "our," or "us"). These Terms of Service ("Terms") govern your access to and use of our AI startup generator platform, website, and services (collectively, the "Services").</p>
+                
+                <div class="highlight-box">
+                    <p><strong>Important:</strong> By accessing or using our Services, you agree to be bound by these Terms and our Privacy Policy. If you disagree with any part of these Terms, you may not access our Services.</p>
+                </div>
+            </div>
+
+            <div class="tos-section">
+                <h2 id="acceptance">1. Acceptance of Terms</h2>
+                <p>By registering for, accessing, or using our Services, you acknowledge that you have read, understood, and agree to be bound by these Terms.</p>
+                
+                <h3>Eligibility</h3>
+                <p>You must be at least 18 years old to use our Services. By using our Services, you represent and warrant that you meet this age requirement.</p>
+                
+                <h3>Modifications to Terms</h3>
+                <p>We reserve the right to modify these Terms at any time. We will provide notice of material changes through our Services or via email. Continued use of our Services after such changes constitutes acceptance of the modified Terms.</p>
+            </div>
+
+            <div class="tos-section">
+                <h2 id="services">2. Our Services</h2>
+                <p>FounderBolt provides an AI-powered platform that helps users generate startup concepts, business plans, and landing pages.</p>
+                
+                <h3>Service Description</h3>
+                <ul>
+                    <li>AI-generated business concepts based on user input</li>
+                    <li>Automated business plan creation</li>
+                    <li>Landing page generation and hosting</li>
+                    <li>Market testing capabilities</li>
+                    <li>Analytics and performance tracking</li>
+                </ul>
+                
+                <h3>Service Limitations</h3>
+                <p>While we strive to provide accurate and helpful AI-generated content, you acknowledge that:</p>
+                <ul>
+                    <li>AI-generated content may contain inaccuracies</li>
+                    <li>Business success depends on multiple factors beyond our control</li>
+                    <li>You are responsible for verifying all generated content</li>
+                    <li>We do not provide legal, financial, or professional advice</li>
+                </ul>
+            </div>
+
+            <div class="tos-section">
+                <h2 id="accounts">3. User Accounts</h2>
+                
+                <h3>Registration</h3>
+                <p>To access certain features, you must register for an account. You agree to:</p>
+                <ul>
+                    <li>Provide accurate, current, and complete information</li>
+                    <li>Maintain and promptly update your account information</li>
+                    <li>Maintain the security of your password</li>
+                    <li>Accept responsibility for all activities under your account</li>
+                    <li>Notify us immediately of any unauthorized use</li>
+                </ul>
+                
+                <h3>Account Termination</h3>
+                <p>We reserve the right to suspend or terminate your account if:</p>
+                <ul>
+                    <li>You violate these Terms</li>
+                    <li>You use our Services for illegal purposes</li>
+                    <li>You create risk or possible legal exposure for us</li>
+                    <li>Your account has been inactive for an extended period</li>
+                </ul>
+            </div>
+
+            <div class="tos-section">
+                <h2 id="intellectual">4. Intellectual Property</h2>
+                
+                <h3>Our Intellectual Property</h3>
+                <p>All rights, title, and interest in and to our Services, including all intellectual property rights, are and will remain our exclusive property.</p>
+                
+                <h3>Your Content</h3>
+                <p>You retain all rights to the content you submit, input, or upload to our Services. By using our Services, you grant us a worldwide, non-exclusive, royalty-free license to use, reproduce, and process your content solely to provide the Services to you.</p>
+                
+                <h3>AI-Generated Content</h3>
+                <p>Content generated by our AI based on your input belongs to you, subject to these Terms. You are responsible for ensuring such content doesn't infringe on third-party rights.</p>
+                
+                <div class="warning-box">
+                    <p><strong>Prohibited Content:</strong> You may not use our Services to generate content that is illegal, infringing, defamatory, obscene, or violates third-party rights.</p>
+                </div>
+            </div>
+
+            <div class="tos-section">
+                <h2 id="payments">5. Payments and Billing</h2>
+                
+                <h3>Pricing</h3>
+                <p>We offer both free and paid subscription plans. Pricing for paid plans is available on our website and may change with notice.</p>
+                
+                <h3>Billing Cycle</h3>
+                <p>Subscription fees are billed in advance on a recurring basis. By purchasing a subscription, you authorize us to charge your payment method automatically.</p>
+                
+                <h3>Refunds</h3>
+                <p>We offer refunds in accordance with our Refund Policy. Generally, subscription fees are non-refundable except where required by law.</p>
+                
+                <h3>Taxes</h3>
+                <p>You are responsible for paying all taxes associated with your purchases. We may collect sales tax where required.</p>
+            </div>
+
+            <div class="tos-section">
+                <h2 id="termination">6. Termination</h2>
+                
+                <h3>By You</h3>
+                <p>You may stop using our Services at any time. You may also delete your account through your account settings.</p>
+                
+                <h3>By Us</h3>
+                <p>We may terminate or suspend your access to our Services immediately, without prior notice, for conduct that we believe violates these Terms or is harmful to other users, us, or third parties.</p>
+                
+                <h3>Effect of Termination</h3>
+                <p>Upon termination, your right to use our Services will immediately cease. We may delete your data in accordance with our Privacy Policy.</p>
+            </div>
+
+            <div class="tos-section">
+                <h2 id="liability">7. Disclaimers and Limitation of Liability</h2>
+                
+                <h3>No Warranty</h3>
+                <p>Our Services are provided "as is" and "as available" without warranties of any kind, either express or implied.</p>
+                
+                <h3>Limitation of Liability</h3>
+                <p>To the fullest extent permitted by law, in no event will FounderBolt, its affiliates, officers, directors, employees, agents, or licensors be liable for any indirect, incidental, special, consequential, or punitive damages.</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Scenario</th>
+                            <th>Our Liability</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Service interruptions</td>
+                            <td>Limited to subscription fee for affected period</td>
+                        </tr>
+                        <tr>
+                            <td>Data loss</td>
+                            <td>Limited to cost of data recovery</td>
+                        </tr>
+                        <tr>
+                            <td>Third-party claims</td>
+                            <td>Limited to amount paid by you in the 12 months preceding claim</td>
+                        </tr>
+                        <tr>
+                            <td>Total liability cap</td>
+                            <td>$100 or amount paid by you, whichever is greater</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tos-section">
+                <h2 id="governing">8. Governing Law and Dispute Resolution</h2>
+                
+                <h3>Governing Law</h3>
+                <p>These Terms shall be governed by the laws of the State of Delaware, without regard to its conflict of law provisions.</p>
+                
+                <h3>Dispute Resolution</h3>
+                <p>Any disputes shall be resolved through binding arbitration in accordance with the American Arbitration Association rules, rather than in court.</p>
+                
+                <h3>Class Action Waiver</h3>
+                <p>You agree that any arbitration or proceeding shall be limited to the dispute between us and you individually.</p>
+            </div>
+
+            <div class="tos-section">
+                <h2 id="miscellaneous">9. Miscellaneous</h2>
+                
+                <h3>Entire Agreement</h3>
+                <p>These Terms, together with our Privacy Policy, constitute the entire agreement between you and FounderBolt regarding our Services.</p>
+                
+                <h3>Severability</h3>
+                <p>If any provision of these Terms is held to be invalid or unenforceable, the remaining provisions will remain in full force and effect.</p>
+                
+                <h3>Assignment</h3>
+                <p>You may not assign these Terms without our consent. We may assign these Terms to any affiliate or in connection with a merger, acquisition, or sale of assets.</p>
+            </div>
+
+            <!-- Acceptance Section -->
+            <div class="acceptance-section">
+                <h3>Accept Terms of Service</h3>
+                <p>To continue using FounderBolt, please confirm that you have read and agree to our Terms of Service.</p>
+                
+                <div class="acceptance-checkbox">
+                    <input type="checkbox" id="acceptTos" class="checkbox-input">
+                    <label for="acceptTos" class="checkbox-label">I have read and agree to the Terms of Service</label>
+                </div>
+                
+                <button id="continueButton" class="continue-button">Continue to FounderBolt</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <div class="footer-brand">
+                        <a href="index.html" class="footer-logo">
+                            <div class="logo-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            FounderBolt
+                        </a>
+                        <p class="tagline">Start New Journey.</p>
+                        <p>Transforming ideas into successful businesses with the power of AI.</p>
+                   
+                    </div>
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4>Product</h4>
+                            <ul>
+                                <li><a href="index.html#how-it-works">How It Works</a></li>
+                                <li><a href="index.html#why-foundrai">Why FoundrAI</a></li>
+                                <li><a href="index.html#waitlist">Waitlist</a></li>
+                            </ul>
+                        </div>
+                      
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="copyright">
+                        &copy; 2025 FounderBolt. All rights reserved.
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    </footer>
+
+   
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTopButton = document.getElementById('backToTop');
+            const progressBar = document.getElementById('progressBar');
+            const acceptCheckbox = document.getElementById('acceptTos');
+            const continueButton = document.getElementById('continueButton');
+            
+            // Progress bar on scroll
+            window.addEventListener('scroll', function() {
+                const winHeight = window.innerHeight;
+                const docHeight = document.documentElement.scrollHeight;
+                const scrollTop = window.pageYOffset;
+                const scrollPercent = (scrollTop / (docHeight - winHeight)) * 100;
+                
+                progressBar.style.width = scrollPercent + '%';
+                
+                // Show/hide back to top button
+                if (scrollTop > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+            
+            // Smooth scroll to top
+            backToTopButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const offsetTop = targetElement.offsetTop - 100;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Terms acceptance functionality
+            acceptCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    continueButton.classList.add('active');
+                } else {
+                    continueButton.classList.remove('active');
+                }
+            });
+            
+            continueButton.addEventListener('click', function() {
+                if (acceptCheckbox.checked) {
+                    // In a real implementation, this would set a cookie or session variable
+                    // and redirect to the main application
+                    alert('Thank you for accepting our Terms of Service. You will now be redirected to the application.');
+                    window.location.href = 'index.html';
+                }
+            });
+            
+            // Add fade-in animation to sections
+            const fadeSections = document.querySelectorAll('.tos-section');
+            
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeSections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                fadeObserver.observe(section);
+            });
+            
+            // Add active state to quick nav links based on scroll position
+            const sections = document.querySelectorAll('.tos-section');
+            const navLinks = document.querySelectorAll('.quick-nav-link');
+            
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 150;
+                    const sectionHeight = section.clientHeight;
+                    if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

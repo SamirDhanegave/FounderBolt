@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDPR | FounderBolt</title>
+    <link rel="icon" type="image/x-icon" href="bolt.png">
+    <link rel="shortcut icon" type="image/x-icon" href="bolt.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles & Variables - Matching the main site */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #7c3aed;
+            --accent: #f59e0b;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+            --lighter: #ffffff;
+            --gray: #64748b;
+            --gray-light: #cbd5e1;
+            --success: #10b981;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --gradient-light: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.025em;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 2.5rem 0 1.5rem;
+            color: var(--dark);
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            color: var(--dark);
+        }
+
+        p {
+            color: var(--gray);
+            margin-bottom: 1.25rem;
+        }
+
+        ul, ol {
+            margin: 1rem 0 1.5rem 1.5rem;
+            color: var(--gray);
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 3rem 0;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            position: relative;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo-icon {
+            background: var(--gradient);
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Header Section */
+        .gdpr-header {
+            background: var(--lighter);
+            padding: 4rem 0;
+            text-align: center;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .last-updated {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* Content Section */
+        .gdpr-content {
+            background: var(--lighter);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .gdpr-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .gdpr-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-box {
+            background: var(--gradient-light);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            padding: 1.5rem;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        th {
+            background: var(--gradient-light);
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        /* Rights Cards */
+        .rights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .right-card {
+            background: var(--lighter);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--primary);
+            transition: var(--transition);
+        }
+
+        .right-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .right-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-size: 1.25rem;
+        }
+
+        /* Data Request Form */
+        .data-request-form {
+            background: var(--gradient-light);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .footer-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+
+        .footer-brand {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 1rem;
+        }
+
+        .tagline {
+            color: var(--gray-light);
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-column {
+            min-width: 150px;
+        }
+
+        .footer-column h4 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            margin: 0;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-column a {
+            color: var(--gray-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .copyright {
+            color: var(--gray-light);
+            font-size: 0.875rem;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-legal a {
+            color: var(--gray-light);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: var(--transition);
+        }
+
+        .footer-legal a:hover {
+            color: white;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--gradient);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Progress Indicator */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: transparent;
+            z-index: 1000;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: var(--gradient);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            h1 {
+                font-size: 2.25rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .gdpr-content {
+                padding: 2rem;
+            }
+            
+            .rights-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-main {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .footer-links {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .gdpr-content {
+                padding: 1.5rem;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .back-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+    -
+
+    <div class="container">
+        <nav>
+             <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                FounderBolt
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#how-it-works" class="nav-link">How It Works</a>
+                <a href="index.html#waitlist" class="nav-link">Waitlist</a>
+                <a href="privacy.html" class="nav-link">Privacy Policy</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Header Section -->
+    <section class="gdpr-header">
+        <div class="container">
+            <h1>GDPR Compliance</h1>
+            <p>General Data Protection Regulation (GDPR) Information</p>
+            <p class="last-updated">Last updated: December 2, 2025</p>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="gdpr-content">
+        <div class="container">
+            <div class="gdpr-section">
+                <h2>Our Commitment to GDPR Compliance</h2>
+                <p>At FounderBolt, we are fully committed to complying with the General Data Protection Regulation (GDPR) and protecting the privacy rights of all individuals within the European Union and European Economic Area.</p>
+                
+                <div class="highlight-box">
+                    <p><strong>GDPR Overview:</strong> The General Data Protection Regulation (GDPR) is a comprehensive data protection law that came into effect on May 25, 2018. It grants EU citizens control over their personal data and simplifies the regulatory environment for international business.</p>
+                </div>
+            </div>
+
+            <div class="gdpr-section">
+                <h2>Your GDPR Rights</h2>
+                <p>Under GDPR, you have the following rights regarding your personal data:</p>
+                
+                <div class="rights-grid">
+                    <div class="right-card">
+                        <div class="right-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3>Right to Access</h3>
+                        <p>You have the right to obtain confirmation as to whether or not personal data concerning you is being processed.</p>
+                    </div>
+                    
+                    <div class="right-card">
+                        <div class="right-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <h3>Right to Rectification</h3>
+                        <p>You have the right to have inaccurate personal data rectified, or completed if it is incomplete.</p>
+                    </div>
+                    
+                    <div class="right-card">
+                        <div class="right-icon">
+                            <i class="fas fa-trash-alt"></i>
+                        </div>
+                        <h3>Right to Erasure</h3>
+                        <p>You have the right to have your personal data erased in certain circumstances ("right to be forgotten").</p>
+                    </div>
+                    
+                    <div class="right-card">
+                        <div class="right-icon">
+                            <i class="fas fa-pause-circle"></i>
+                        </div>
+                        <h3>Right to Restrict Processing</h3>
+                        <p>You have the right to request the restriction or suppression of your personal data.</p>
+                    </div>
+                    
+                    <div class="right-card">
+                        <div class="right-icon">
+                            <i class="fas fa-file-export"></i>
+                        </div>
+                        <h3>Right to Data Portability</h3>
+                        <p>You have the right to receive your personal data in a structured, commonly used format.</p>
+                    </div>
+                    
+                    <div class="right-card">
+                        <div class="right-icon">
+                            <i class="fas fa-ban"></i>
+                        </div>
+                        <h3>Right to Object</h3>
+                        <p>You have the right to object to the processing of your personal data in certain circumstances.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gdpr-section">
+                <h2>Data Processing Principles</h2>
+                <p>We adhere to the following GDPR data processing principles:</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Principle</th>
+                            <th>Description</th>
+                            <th>Our Implementation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Lawfulness, Fairness & Transparency</td>
+                            <td>Processing must be lawful, fair, and transparent to the data subject</td>
+                            <td>We provide clear privacy notices and obtain consent where required</td>
+                        </tr>
+                        <tr>
+                            <td>Purpose Limitation</td>
+                            <td>Data must be collected for specified, explicit, and legitimate purposes</td>
+                            <td>We clearly state the purpose of data collection in our privacy policy</td>
+                        </tr>
+                        <tr>
+                            <td>Data Minimization</td>
+                            <td>Only necessary data should be collected for the stated purposes</td>
+                            <td>We collect only the data essential for providing our services</td>
+                        </tr>
+                        <tr>
+                            <td>Accuracy</td>
+                            <td>Data must be kept accurate and up to date</td>
+                            <td>We provide mechanisms for users to update their information</td>
+                        </tr>
+                        <tr>
+                            <td>Storage Limitation</td>
+                            <td>Data should not be kept longer than necessary</td>
+                            <td>We have data retention policies and regularly review stored data</td>
+                        </tr>
+                        <tr>
+                            <td>Integrity & Confidentiality</td>
+                            <td>Data must be processed securely</td>
+                            <td>We implement appropriate technical and organizational security measures</td>
+                        </tr>
+                        <tr>
+                            <td>Accountability</td>
+                            <td>The controller is responsible for demonstrating compliance</td>
+                            <td>We maintain documentation of our data processing activities</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="gdpr-section">
+                <h2>Legal Basis for Processing</h2>
+                <p>We process personal data based on one or more of the following legal bases:</p>
+                <ul>
+                    <li><strong>Consent:</strong> You have given clear consent for us to process your personal data for a specific purpose</li>
+                    <li><strong>Contract:</strong> Processing is necessary for a contract we have with you</li>
+                    <li><strong>Legal Obligation:</strong> Processing is necessary for us to comply with the law</li>
+                    <li><strong>Legitimate Interests:</strong> Processing is necessary for our legitimate interests, provided your interests don't override ours</li>
+                </ul>
+                
+                <div class="warning-box">
+                    <p><strong>Withdrawing Consent:</strong> Where we rely on consent as the legal basis for processing, you have the right to withdraw your consent at any time. This will not affect the lawfulness of processing based on consent before its withdrawal.</p>
+                </div>
+            </div>
+
+           
+
+            <div class="gdpr-section">
+                <h2>International Data Transfers</h2>
+                <p>As a global company, FounderBolt may transfer personal data to countries outside the EU/EEA. When we do so, we ensure appropriate safeguards are in place:</p>
+                <ul>
+                    <li>Adequacy decisions by the European Commission</li>
+                    <li>Standard Contractual Clauses (SCCs)</li>
+                    <li>Binding Corporate Rules (BCRs)</li>
+                    <li>Certification under the EU-US Data Privacy Framework</li>
+                </ul>
+            </div>
+
+            <div class="gdpr-section">
+                <h2>Data Breach Procedures</h2>
+                <p>We have implemented procedures to deal with any suspected personal data breach:</p>
+                <ol>
+                    <li>Immediate assessment of the breach scope and impact</li>
+                    <li>Containment and recovery measures</li>
+                    <li>Notification to the relevant supervisory authority within 72 hours where required</li>
+                    <li>Communication to affected individuals when the breach is likely to result in a high risk to their rights and freedoms</li>
+                </ol>
+            </div>
+
+          
+                
+           
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <div class="footer-brand">
+                        <a href="index.html" class="footer-logo">
+                            <div class="logo-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            FounderBolt
+                        </a>
+                        <p class="tagline">Start Something Bold.</p>
+                        <p>Transforming ideas into successful businesses with the power of AI.</p>
+                        <!-- <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-product-hunt"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        </div> -->
+                    </div>
+                    
+                        <div class="footer-column">
+                            <h4>Legal</h4>
+                            <ul>
+                                <li><a href="privacy.html">Privacy Policy</a></li>
+                                <li><a href="terms.html">Terms of Service</a></li>
+                                
+                      
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="copyright">
+                        &copy; 2025 FounderBolt. All rights reserved.
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    </footer>
+
+ 
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const backToTopButton = document.getElementById('backToTop');
+            const progressBar = document.getElementById('progressBar');
+            const gdprRequestForm = document.getElementById('gdprRequestForm');
+            
+            // Progress bar on scroll
+            window.addEventListener('scroll', function() {
+                const winHeight = window.innerHeight;
+                const docHeight = document.documentElement.scrollHeight;
+                const scrollTop = window.pageYOffset;
+                const scrollPercent = (scrollTop / (docHeight - winHeight)) * 100;
+                
+                progressBar.style.width = scrollPercent + '%';
+                
+                // Show/hide back to top button
+                if (scrollTop > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+            
+            // Smooth scroll to top
+            backToTopButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // GDPR Request Form Submission
+            gdprRequestForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const submitButton = this.querySelector('.submit-button');
+                const originalText = submitButton.textContent;
+                
+                // Show loading state
+                submitButton.textContent = 'Submitting...';
+                submitButton.disabled = true;
+                
+                // Simulate form submission
+                setTimeout(function() {
+                    // In a real implementation, this would send the data to your server
+                    alert('Thank you for your GDPR request. We have received your submission and will respond within 30 days as required by GDPR.');
+                    gdprRequestForm.reset();
+                    
+                    // Reset button
+                    submitButton.textContent = originalText;
+                    submitButton.disabled = false;
+                }, 1500);
+            });
+            
+            // Add fade-in animation to sections
+            const fadeSections = document.querySelectorAll('.gdpr-section, .right-card');
+            
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            fadeSections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                fadeObserver.observe(section);
+            });
+            
+            // Add hover effects to table rows
+            const tableRows = document.querySelectorAll('tbody tr');
+            tableRows.forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = 'rgba(37, 99, 235, 0.05)';
+                });
+                
+                row.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
