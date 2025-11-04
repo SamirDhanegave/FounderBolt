@@ -164,6 +164,62 @@
             width: 100%;
         }
 
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: var(--lighter);
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+            transition: var(--transition-slow);
+            z-index: 999;
+            padding: 6rem 2rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu .nav-link {
+            font-size: 1.25rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 998;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
         /* Hero Section */
         .hero {
             min-height: 90vh;
@@ -308,7 +364,7 @@
             margin-bottom: 1rem;
         }
 
-        /* Why FoundrAI Section */
+        /* Why FounderBolt Section */
         .why-foundrai {
             text-align: center;
             position: relative;
@@ -632,7 +688,35 @@
             animation-delay: 10s;
         }
 
-        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--gradient);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+        }
 
         /* Animations */
         @keyframes float {
@@ -690,7 +774,21 @@
             animation-delay: 0.6s;
         }
 
-        /* Responsive Design */
+        /* Enhanced Responsive Design */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2.25rem;
+            }
+        }
+
         @media (max-width: 968px) {
             h1 {
                 font-size: 2.75rem;
@@ -698,6 +796,10 @@
             
             h2 {
                 font-size: 2rem;
+            }
+            
+            h3 {
+                font-size: 1.375rem;
             }
             
             .steps, .features {
@@ -720,6 +822,74 @@
                 width: 100%;
                 justify-content: space-between;
             }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .ai-orb {
+                width: 400px;
+                height: 400px;
+            }
+            
+            .floating-shape {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 4rem 0;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 1.875rem;
+            }
+            
+            h3 {
+                font-size: 1.25rem;
+            }
+            
+            .hero-subtitle, .section-subtitle {
+                font-size: 1.125rem;
+            }
+            
+            .cta-section {
+                padding: 4rem 1.5rem;
+                margin: 0 1rem;
+            }
+            
+            .step, .feature {
+                padding: 2rem 1.5rem;
+            }
+            
+            .step-icon, .feature-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 1.75rem;
+            }
+            
+            .footer-brand {
+                min-width: 100%;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 2rem;
+                width: 100%;
+            }
+            
+            .footer-column {
+                min-width: 100%;
+            }
         }
 
         @media (max-width: 640px) {
@@ -731,8 +901,20 @@
                 font-size: 1.75rem;
             }
             
-            .nav-links {
-                display: none;
+            h3 {
+                font-size: 1.125rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+            
+            .hero {
+                min-height: 80vh;
             }
             
             .waitlist-form {
@@ -745,14 +927,101 @@
                 width: 100%;
             }
             
-            .footer-links {
-                flex-direction: column;
-                gap: 2rem;
+            .cta-button {
+                width: 100%;
+                justify-content: center;
             }
             
             .footer-bottom {
                 flex-direction: column;
                 text-align: center;
+                gap: 1rem;
+            }
+            
+            .footer-legal {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .back-to-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 45px;
+                height: 45px;
+            }
+            
+            .ai-orb {
+                width: 300px;
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .hero-subtitle, .section-subtitle {
+                font-size: 1rem;
+            }
+            
+            .cta-button {
+                padding: 0.875rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .step, .feature {
+                padding: 1.5rem 1rem;
+            }
+            
+            .logo {
+                font-size: 1.25rem;
+            }
+            
+            .logo-icon {
+                width: 32px;
+                height: 32px;
+            }
+            
+            .mobile-menu {
+                width: 85%;
+            }
+        }
+
+        @media (max-width: 360px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            h2 {
+                font-size: 1.375rem;
+            }
+            
+            .container {
+                padding: 0 0.75rem;
+            }
+            
+            .cta-section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) {
+            .step:hover, .feature:hover, .cta-button:hover, .social-link:hover {
+                transform: none;
+            }
+            
+            .step:hover .step-icon, .feature:hover .feature-icon {
+                transform: none;
+            }
+            
+            .nav-link::after {
+                display: none;
             }
         }
     </style>
@@ -770,11 +1039,19 @@
                 <a href="#how-it-works" class="nav-link">How It Works</a>
                 <a href="#why-foundrai" class="nav-link">Why FounderBolt</a>
                 <a href="#waitlist" class="nav-link">Waitlist</a>
-                </div>
-            </nav>
-            
-        
-        
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#how-it-works" class="nav-link">How It Works</a>
+            <a href="#why-foundrai" class="nav-link">Why FounderBolt</a>
+            <a href="#waitlist" class="nav-link">Waitlist</a>
+        </div>
+        <div class="menu-overlay" id="menuOverlay"></div>
 
         <!-- Hero Section -->
         <section class="hero">
@@ -824,7 +1101,7 @@
             </div>
         </section>
 
-        <!-- Why FoundrAI Section -->
+        <!-- Why FounderBolt Section -->
         <section class="why-foundrai" id="why-foundrai">
             <h2 class="fade-in">Why FounderBolt</h2>
             <p class="section-subtitle fade-in delay-1">Built for dreamers who want to build faster and smarter</p>
@@ -867,9 +1144,6 @@
         </section>
     </div>
 
-    
-    <br>
-    <br>
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -884,9 +1158,8 @@
                         </a>
                         <p class="tagline">Start Something Bold.</p>
                         <p>Transforming ideas into successful businesses with the power of AI.</p>
-                    
                     </div>
-                    
+                    <div class="footer-links">
                         <div class="footer-column">
                             <h4>Legal</h4>
                             <ul>
@@ -901,20 +1174,65 @@
                     <div class="copyright">
                         &copy; 2025 FounderBolt. All rights reserved.
                     </div>
-                   
                 </div>
             </div>
         </div>
     </footer>
 
-     
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
     </a>
+
     <script>
         // Interactive elements
         document.addEventListener('DOMContentLoaded', function() {
             const ctaButton = document.querySelector('.cta-button');
             const waitlistForm = document.getElementById('waitlistForm');
             const formMessage = document.getElementById('formMessage');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const backToTopButton = document.getElementById('backToTop');
+            
+            // Mobile menu functionality
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                menuOverlay.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            });
+            
+            menuOverlay.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.mobile-menu .nav-link').forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                    menuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
+            
+            // Back to top button
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
             
             // Button hover effect enhancement
             ctaButton.addEventListener('mouseenter', function() {
