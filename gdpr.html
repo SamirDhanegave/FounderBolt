@@ -175,6 +175,62 @@
             width: 100%;
         }
 
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: var(--lighter);
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            z-index: 999;
+            padding: 6rem 2rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu .nav-link {
+            font-size: 1.25rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 998;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
         /* Header Section */
         .gdpr-header {
             background: var(--lighter);
@@ -513,7 +569,13 @@
             transition: width 0.3s ease;
         }
 
-        /* Responsive Design */
+        /* Enhanced Responsive Design */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+
         @media (max-width: 968px) {
             h1 {
                 font-size: 2.25rem;
@@ -540,34 +602,101 @@
                 width: 100%;
                 justify-content: space-between;
             }
-        }
-
-        @media (max-width: 640px) {
-            h1 {
-                font-size: 2rem;
-            }
             
             .nav-links {
                 display: none;
             }
             
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 2rem 0;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.375rem;
+            }
+            
+            h3 {
+                font-size: 1.125rem;
+            }
+            
             .gdpr-content {
                 padding: 1.5rem;
+                margin: 0 1rem 2rem;
+            }
+            
+            .gdpr-header {
+                padding: 3rem 0;
+            }
+            
+            .right-card {
+                padding: 1.25rem;
+            }
+            
+            .right-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.125rem;
+            }
+            
+            .footer-brand {
+                min-width: 100%;
             }
             
             .footer-links {
                 flex-direction: column;
                 gap: 2rem;
+                width: 100%;
+            }
+            
+            .footer-column {
+                min-width: 100%;
+            }
+            
+            .data-request-form {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            h2 {
+                font-size: 1.25rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .gdpr-content {
+                padding: 1.25rem;
+            }
+            
+            .highlight-box, .warning-box {
+                padding: 1.25rem;
             }
             
             .footer-bottom {
                 flex-direction: column;
                 text-align: center;
+                gap: 1rem;
             }
             
-            table {
-                display: block;
-                overflow-x: auto;
+            .footer-legal {
+                justify-content: center;
+                flex-wrap: wrap;
             }
             
             .back-to-top {
@@ -576,15 +705,90 @@
                 width: 45px;
                 height: 45px;
             }
+            
+            table {
+                font-size: 0.875rem;
+            }
+            
+            th, td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            h2 {
+                font-size: 1.125rem;
+            }
+            
+            .gdpr-header {
+                padding: 2rem 0;
+            }
+            
+            .logo {
+                font-size: 1.25rem;
+            }
+            
+            .logo-icon {
+                width: 32px;
+                height: 32px;
+            }
+            
+            .mobile-menu {
+                width: 85%;
+            }
+            
+            .rights-grid {
+                gap: 1rem;
+            }
+            
+            .right-card {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            h1 {
+                font-size: 1.375rem;
+            }
+            
+            .container {
+                padding: 0 0.75rem;
+            }
+            
+            .gdpr-content {
+                padding: 1rem;
+            }
+            
+            table {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) {
+            .right-card:hover, .submit-button:hover, .social-link:hover {
+                transform: none;
+            }
+            
+            .nav-link::after {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
-    -
+    <!-- Progress Indicator -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
 
     <div class="container">
         <nav>
-             <a href="index.html" class="logo">
+            <a href="index.html" class="logo">
                 <div class="logo-icon">
                     <i class="fas fa-bolt"></i>
                 </div>
@@ -596,7 +800,19 @@
                 <a href="index.html#waitlist" class="nav-link">Waitlist</a>
                 <a href="privacy.html" class="nav-link">Privacy Policy</a>
             </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
         </nav>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html#how-it-works" class="nav-link">How It Works</a>
+            <a href="index.html#waitlist" class="nav-link">Waitlist</a>
+            <a href="privacy.html" class="nav-link">Privacy Policy</a>
+        </div>
+        <div class="menu-overlay" id="menuOverlay"></div>
     </div>
 
     <!-- Header Section -->
@@ -742,8 +958,6 @@
                 </div>
             </div>
 
-           
-
             <div class="gdpr-section">
                 <h2>International Data Transfers</h2>
                 <p>As a global company, FounderBolt may transfer personal data to countries outside the EU/EEA. When we do so, we ensure appropriate safeguards are in place:</p>
@@ -765,10 +979,6 @@
                     <li>Communication to affected individuals when the breach is likely to result in a high risk to their rights and freedoms</li>
                 </ol>
             </div>
-
-          
-                
-           
         </div>
     </section>
 
@@ -786,21 +996,13 @@
                         </a>
                         <p class="tagline">Start Something Bold.</p>
                         <p>Transforming ideas into successful businesses with the power of AI.</p>
-                        <!-- <div class="social-links">
-                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-product-hunt"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        </div> -->
                     </div>
-                    
+                    <div class="footer-links">
                         <div class="footer-column">
                             <h4>Legal</h4>
                             <ul>
                                 <li><a href="privacy.html">Privacy Policy</a></li>
                                 <li><a href="terms.html">Terms of Service</a></li>
-                                
-                      
                             </ul>
                         </div>
                     </div>
@@ -809,19 +1011,45 @@
                     <div class="copyright">
                         &copy; 2025 FounderBolt. All rights reserved.
                     </div>
-                
                 </div>
             </div>
         </div>
     </footer>
 
- 
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const backToTopButton = document.getElementById('backToTop');
             const progressBar = document.getElementById('progressBar');
-            const gdprRequestForm = document.getElementById('gdprRequestForm');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            
+            // Mobile menu functionality
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                menuOverlay.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            });
+            
+            menuOverlay.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.mobile-menu .nav-link').forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                    menuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                });
+            });
             
             // Progress bar on scroll
             window.addEventListener('scroll', function() {
@@ -865,29 +1093,6 @@
                         });
                     }
                 });
-            });
-            
-            // GDPR Request Form Submission
-            gdprRequestForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const submitButton = this.querySelector('.submit-button');
-                const originalText = submitButton.textContent;
-                
-                // Show loading state
-                submitButton.textContent = 'Submitting...';
-                submitButton.disabled = true;
-                
-                // Simulate form submission
-                setTimeout(function() {
-                    // In a real implementation, this would send the data to your server
-                    alert('Thank you for your GDPR request. We have received your submission and will respond within 30 days as required by GDPR.');
-                    gdprRequestForm.reset();
-                    
-                    // Reset button
-                    submitButton.textContent = originalText;
-                    submitButton.disabled = false;
-                }, 1500);
             });
             
             // Add fade-in animation to sections
