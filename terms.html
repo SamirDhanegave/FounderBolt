@@ -107,7 +107,7 @@
             padding: 3rem 0;
         }
 
-        /* Navigation */
+        /* Navigation - FIXED FOR RESPONSIVENESS */
         nav {
             display: flex;
             justify-content: space-between;
@@ -126,6 +126,7 @@
             color: var(--dark);
             text-decoration: none;
             transition: var(--transition);
+            z-index: 1001;
         }
 
         .logo:hover {
@@ -175,7 +176,7 @@
             width: 100%;
         }
 
-          /* Mobile Menu */
+        /* Mobile Menu - FIXED IMPLEMENTATION */
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -183,7 +184,8 @@
             font-size: 1.5rem;
             color: var(--dark);
             cursor: pointer;
-            z-index: 1000;
+            z-index: 1001;
+            padding: 0.5rem;
         }
 
         .mobile-menu {
@@ -586,7 +588,7 @@
             }
         }
 
-        /* Tablets */
+        /* Tablets - NAVBAR RESPONSIVENESS FIX */
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.25rem;
@@ -652,6 +654,15 @@
             
             .footer-bottom {
                 padding-top: 1.75rem;
+            }
+            
+            /* Navbar responsiveness - FIXED */
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
             }
         }
 
@@ -904,12 +915,29 @@
                 FounderBolt
             </a>
 
+            <!-- Desktop Navigation -->
             <div class="nav-links">
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="index.html#how-it-works" class="nav-link">How It Works</a>
                 <a href="index.html#waitlist" class="nav-link">Waitlist</a>
                 <a href="privacy.html" class="nav-link">Privacy Policy</a>
             </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#how-it-works" class="nav-link">How It Works</a>
+                <a href="index.html#waitlist" class="nav-link">Waitlist</a>
+                <a href="privacy.html" class="nav-link">Privacy Policy</a>
+            </div>
+
+            <!-- Menu Overlay -->
+            <div class="menu-overlay" id="menuOverlay"></div>
         </nav>
     </div>
 
@@ -1176,6 +1204,52 @@
             const progressBar = document.getElementById('progressBar');
             const acceptCheckbox = document.getElementById('acceptTos');
             const continueButton = document.getElementById('continueButton');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            
+            // Mobile menu functionality
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                menuOverlay.classList.toggle('active');
+                document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+                
+                // Change icon based on menu state
+                const icon = mobileMenuBtn.querySelector('i');
+                if (mobileMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+            
+            // Close mobile menu when clicking overlay
+            menuOverlay.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+                
+                // Reset icon
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+            
+            // Close mobile menu when clicking a link
+            mobileMenu.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.remove('active');
+                    menuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                    
+                    // Reset icon
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                });
+            });
             
             // Progress bar on scroll
             window.addEventListener('scroll', function() {
@@ -1285,4 +1359,3 @@
     </script>
 </body>
 </html>
-
