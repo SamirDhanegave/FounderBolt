@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Plan Generator | FounderBolt</title>
+    <link rel="icon" type="image/x-icon" href="bolt.png">
+    <link rel="shortcut icon" type="image/x-icon" href="bolt.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles & Variables - Matching the main site */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #7c3aed;
+            --accent: #f59e0b;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+            --lighter: #ffffff;
+            --gray: #64748b;
+            --gray-light: #cbd5e1;
+            --success: #10b981;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --gradient-light: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.025em;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 2.5rem 0 1.5rem;
+            color: var(--dark);
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            color: var(--dark);
+        }
+
+        p {
+            color: var(--gray);
+            margin-bottom: 1.25rem;
+        }
+
+        ul, ol {
+            margin: 1rem 0 1.5rem 1.5rem;
+            color: var(--gray);
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 3rem 0;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            position: relative;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo-icon {
+            background: var(--gradient);
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Header Section */
+        .form-header {
+            background: var(--lighter);
+            padding: 4rem 0;
+            text-align: center;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        /* Form Section */
+        .form-container {
+            background: var(--lighter);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--radius);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: var(--lighter);
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .required::after {
+            content: " *";
+            color: #ef4444;
+        }
+
+        .submit-button {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: block;
+            width: 100%;
+            margin-top: 2rem;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .submit-button:active {
+            transform: translateY(0);
+        }
+
+        .submit-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .form-note {
+            font-size: 0.875rem;
+            color: var(--gray);
+            margin-top: 0.5rem;
+        }
+
+        /* Success Message */
+        .success-message {
+            background: var(--gradient-light);
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin: 1.5rem 0;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .footer-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+
+        .footer-brand {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 1rem;
+        }
+
+        .tagline {
+            color: var(--gray-light);
+            font-size: 1.125rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-column {
+            min-width: 150px;
+        }
+
+        .footer-column h4 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            margin: 0;
+        }
+
+        .footer-column li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-column a {
+            color: var(--gray-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .copyright {
+            color: var(--gray-light);
+            font-size: 0.875rem;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-legal a {
+            color: var(--gray-light);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: var(--transition);
+        }
+
+        .footer-legal a:hover {
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.25rem;
+            }
+            
+            .form-container {
+                padding: 2rem;
+            }
+            
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .form-container {
+                padding: 1.5rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .footer-main {
+                gap: 2rem;
+            }
+            
+            .footer-links {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            .form-container {
+                padding: 1.25rem;
+            }
+            
+            .footer-brand {
+                min-width: 100%;
+                text-align: center;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1.5rem;
+                width: 100%;
+            }
+            
+            .footer-column {
+                min-width: 100%;
+                text-align: center;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- Header Section -->
+    <section class="form-header">
+        <div class="container">
+            <h1>Generate Your Business Roadmap</h1>
+            <p>Tell us about your startup idea and we'll create a personalized roadmap to guide your journey</p>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section>
+        <div class="container">
+            <div class="success-message" id="successMessage">
+                <h3><i class="fas fa-check-circle" style="color: var(--success); margin-right: 10px;"></i>Thank You!</h3>
+                <p>Your information has been submitted successfully. We're generating your personalized roadmap and will send it to your email shortly.</p>
+            </div>
+            
+            <div class="form-container">
+                <form action="https://api.sheetmonkey.io/form/xgikkeMnyiV1i5ortZk5hY" method="post" id="businessPlanForm">
+                    <div class="form-group">
+                        <label for="fullName" class="form-label">Full Name</label>
+                        <input type="text" id="fullName" name="Full Name" class="form-input" placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label required">Email Address</label>
+                        <input type="email" id="email" name="Email" class="form-input" placeholder="Enter your email address" required>
+                        <p class="form-note">We'll send your personalized roadmap to this email</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="startupName" class="form-label">Startup Name</label>
+                        <input type="text" id="startupName" name="Startup Name" class="form-input" placeholder="What's your startup called?">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="problem" class="form-label">What problem are you solving?</label>
+                        <textarea id="problem" name="Problem Solving" class="form-textarea" placeholder="Describe the problem your startup aims to solve..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="audience" class="form-label">Who is your target audience?</label>
+                        <textarea id="audience" name="Target Audience" class="form-textarea" placeholder="Describe your ideal customers or users..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="goal" class="form-label">What's your goal for the next 30 days?</label>
+                        <textarea id="goal" name="30-Day Goal" class="form-textarea" placeholder="What do you hope to accomplish in the next month?"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="skills" class="form-label">What skills are you currently missing?</label>
+                        <textarea id="skills" name="Missing Skills" class="form-textarea" placeholder="What expertise or skills would help you move faster?"></textarea>
+                        <p class="form-note">This helps us identify potential gaps in your team or knowledge</p>
+                    </div>
+
+                    <!-- Hidden fields for SheetMonkey -->
+                    <input type="hidden" name="Created" value="x-sheetmonkey-current-date-time" />
+                    <input type="hidden" name="Source" value="FounderBolt Website" />
+
+                    <button type="submit" class="submit-button" id="submitButton">
+                        <i class="fas fa-bolt"></i> Generate My Roadmap
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <div class="footer-brand">
+                        <a href="index.html" class="footer-logo">
+                            <div class="logo-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            FounderBolt
+                        </a>
+                        <p class="tagline">Start Somethng Bold.</p>
+            
+                    </div>
+                  
+                <div class="footer-bottom">
+                    <div class="copyright">
+                        &copy; 2025 FounderBolt. All rights reserved.
+                    </div>
+                    <div class="footer-legal">
+                        <a href="privacy.html">Privacy</a>
+                        <a href="terms.html">Terms</a>
+                        <a href="cookies.html">Cookies</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('businessPlanForm');
+            const submitButton = document.getElementById('submitButton');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Form submission handler
+            form.addEventListener('submit', function(e) {
+                // Validate required fields
+                const email = document.getElementById('email').value;
+                if (!email) {
+                    e.preventDefault();
+                    alert('Please enter your email address');
+                    document.getElementById('email').focus();
+                    return;
+                }
+                
+                // Show loading state
+                const originalText = submitButton.innerHTML;
+                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating Your Roadmap...';
+                submitButton.disabled = true;
+                
+                // In a real implementation, we would handle the form submission
+                // with AJAX to prevent page redirect and show success message
+                // For now, we'll simulate a successful submission
+                
+                // Since we're using SheetMonkey's direct form action,
+                // the page will redirect after submission
+                // We'll add a small delay to show the loading state
+                setTimeout(function() {
+                    // This code will only run if the form submission fails
+                    // In case of success, the page will redirect to SheetMonkey
+                    submitButton.innerHTML = originalText;
+                    submitButton.disabled = false;
+                }, 3000);
+            });
+            
+            // Add subtle animations to form elements
+            const formElements = document.querySelectorAll('.form-input, .form-textarea');
+            formElements.forEach(element => {
+                element.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'translateY(-2px)';
+                });
+                
+                element.addEventListener('blur', function() {
+                    this.parentElement.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Check if we're returning from a successful submission
+            // This would require server-side logic to set a parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('submitted') === 'true') {
+                successMessage.classList.add('show');
+                // Scroll to success message
+                successMessage.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    </script>
+</body>
+</html>
