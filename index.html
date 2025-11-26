@@ -83,6 +83,7 @@
             color: var(--gray);
             max-width: 600px;
             margin: 0 auto 3rem;
+            text-align: center;
         }
 
         /* Layout */
@@ -226,9 +227,8 @@
         .hero {
             min-height: 90vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -236,51 +236,33 @@
 
         .hero-content {
             max-width: 800px;
-            margin: 0 auto;
             position: relative;
-            z-index: 10;
+            z-index: 2;
         }
 
         .hero-subtitle {
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             color: var(--gray);
+            margin-bottom: 2.5rem;
             max-width: 600px;
-            margin: 0 auto 2.5rem;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* CTA Button */
         .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
             background: var(--gradient);
             color: white;
-            padding: 1rem 2rem;
+            border: none;
+            padding: 1rem 2.5rem;
             border-radius: var(--radius);
             font-weight: 600;
             font-size: 1.125rem;
-            text-decoration: none;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border: none;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: var(--transition-slow);
-        }
-
-        .cta-button:hover::before {
-            left: 100%;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: var(--shadow);
         }
 
         .cta-button:hover {
@@ -288,13 +270,8 @@
             box-shadow: var(--shadow-lg);
         }
 
-        .cta-button i {
-            font-size: 1.25rem;
-        }
-
         /* How It Works Section */
         .how-it-works {
-            background-color: var(--lighter);
             text-align: center;
             position: relative;
         }
@@ -315,17 +292,6 @@
             background: var(--lighter);
             box-shadow: var(--shadow);
             position: relative;
-            overflow: hidden;
-        }
-
-        .step::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--gradient);
         }
 
         .step:hover {
@@ -350,20 +316,24 @@
         .step:hover .step-icon {
             background: var(--gradient);
             color: white;
-            transform: scale(1.1);
+            transform: rotate(10deg) scale(1.1);
         }
 
         .step-number {
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            background: var(--primary);
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 40px;
+            height: 40px;
+            background: var(--gradient);
             color: white;
             border-radius: 50%;
-            line-height: 30px;
-            text-align: center;
-            font-weight: 600;
-            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.125rem;
+            box-shadow: var(--shadow);
         }
 
         /* Why FounderBolt Section */
@@ -793,6 +763,7 @@
             }
         }
 
+        /* Tablets */
         @media (max-width: 968px) {
             h1 {
                 font-size: 2.75rem;
@@ -846,6 +817,7 @@
             }
         }
 
+        /* Small tablets and large phones */
         @media (max-width: 768px) {
             section {
                 padding: 4rem 0;
@@ -884,6 +856,7 @@
             
             .footer-brand {
                 min-width: 100%;
+                text-align: center;
             }
             
             .footer-links {
@@ -894,18 +867,17 @@
             
             .footer-column {
                 min-width: 100%;
-            }
-            
-            /* FIXED: Center legal column on small screens */
-            .footer-column {
                 text-align: center;
             }
             
-            .footer-links {
-                justify-content: center;
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
             }
         }
 
+        /* Mobile phones */
         @media (max-width: 640px) {
             h1 {
                 font-size: 2.25rem;
@@ -946,17 +918,6 @@
                 justify-content: center;
             }
             
-            .footer-bottom {
-                flex-direction: column;
-                text-align: center;
-                gap: 1rem;
-            }
-            
-            .footer-legal {
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-            
             .back-to-top {
                 bottom: 1rem;
                 right: 1rem;
@@ -968,8 +929,13 @@
                 width: 300px;
                 height: 300px;
             }
+            
+            .hero-subtitle {
+                font-size: 1.25rem;
+            }
         }
 
+        /* Small phones */
         @media (max-width: 480px) {
             h1 {
                 font-size: 2rem;
@@ -1004,8 +970,15 @@
             .mobile-menu {
                 width: 85%;
             }
+            
+            .step-number {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
         }
 
+        /* Very small phones */
         @media (max-width: 360px) {
             h1 {
                 font-size: 1.75rem;
@@ -1021,6 +994,28 @@
             
             .cta-section {
                 padding: 3rem 1rem;
+            }
+            
+            .step-icon, .feature-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Landscape orientation on mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero {
+                min-height: 100vh;
+                padding: 2rem 0;
+            }
+            
+            .hero-content {
+                padding: 1rem 0;
+            }
+            
+            .mobile-menu {
+                padding-top: 4rem;
             }
         }
 
@@ -1039,116 +1034,12 @@
             }
         }
 
-        /* Header Section */
-        .form-header {
-            background: var(--lighter);
-            padding: 4rem 0;
-            text-align: center;
-            border-bottom: 1px solid var(--gray-light);
-        }
-
-        /* Form Section */
-        .form-container {
-            background: var(--lighter);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            padding: 3rem;
-            margin-bottom: 3rem;
-        }
-
-        .form-group {
-            margin-bottom: 2rem;
-        }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.75rem;
-            font-weight: 600;
-            color: var(--dark);
-        }
-
-        .form-input, .form-textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 1px solid var(--gray-light);
-            border-radius: var(--radius);
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            transition: var(--transition);
-            background-color: var(--lighter);
-        }
-
-        .form-input:focus, .form-textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
-        .form-textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .required::after {
-            content: " *";
-            color: #ef4444;
-        }
-
-        .submit-button {
-            background: var(--gradient);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: var(--radius);
-            font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: var(--transition);
-            display: block;
-            width: 100%;
-            margin-top: 2rem;
-        }
-
-        .submit-button:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
-        }
-
-        .submit-button:active {
-            transform: translateY(0);
-        }
-
-        .submit-button:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .form-note {
-            font-size: 0.875rem;
-            color: var(--gray);
-            margin-top: 0.5rem;
-        }
-
-        /* Success Message */
-        .success-message {
-            background: var(--gradient-light);
-            border-left: 4px solid var(--success);
-            padding: 1.5rem;
-            border-radius: 0 var(--radius) var(--radius) 0;
-            margin: 1.5rem 0;
-            display: none;
-        }
-
-        .success-message.show {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* High DPI screens */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .logo-icon, .step-icon, .feature-icon {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
         }
     </style>
 </head>
@@ -1179,6 +1070,7 @@
                 <a href="#how-it-works" class="nav-link">How It Works</a>
                 <a href="#why-foundrai" class="nav-link">Why FounderBolt</a>
                 <a href="#waitlist" class="nav-link">Waitlist</a>
+                <a href="privacy.html" class="nav-link">Privacy Policy</a>
             </div>
 
             <!-- Menu Overlay -->
@@ -1198,7 +1090,14 @@
                     <i class="fas fa-arrow-right"></i>
                     Get Early Access
                 </button>
-            </div>
+
+                <a href="startup generator.html">
+    <button class="cta-button fade-in delay-2">
+        <i class="fas fa-arrow-right"></i>
+        Generate the Plan
+    </button>
+</a>
+
         </section>
 
         <!-- How It Works Section -->
@@ -1233,74 +1132,6 @@
             </div>
         </section>
 
-
-
-          <!-- Header Section -->
-    <section class="form-header">
-        <div class="container">
-            <h1>Generate Your Business Roadmap</h1>
-            <p>Tell us about your startup idea and we'll create a personalized roadmap to guide your journey</p>
-        </div>
-    </section>
-
-    <!-- Form Section -->
-    <section>
-        <div class="container">
-            <div class="success-message" id="successMessage">
-                <h3><i class="fas fa-check-circle" style="color: var(--success); margin-right: 10px;"></i>Thank You!</h3>
-                <p>Your information has been submitted successfully. We're generating your personalized roadmap and will send it to your email shortly.</p>
-            </div>
-            
-            <div class="form-container">
-                <form action="https://api.sheetmonkey.io/form/d6KL3V1tpz446NmCpBg1Xi" method="post" id="businessPlanForm">
-                    <div class="form-group">
-                        <label for="fullName" class="form-label">Full Name</label>
-                        <input type="text" id="fullName" name="Full Name" class="form-input" placeholder="Enter your full name">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email" class="form-label required">Email Address</label>
-                        <input type="email" id="email" name="Email" class="form-input" placeholder="Enter your email address" required>
-                        <p class="form-note">We'll send your personalized roadmap to this email</p>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="startupName" class="form-label">Startup Name</label>
-                        <input type="text" id="startupName" name="Startup Name" class="form-input" placeholder="What's your startup called?">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="problem" class="form-label">What problem are you solving?</label>
-                        <textarea id="problem" name="Problem Solving" class="form-textarea" placeholder="Describe the problem your startup aims to solve..."></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="audience" class="form-label">Who is your target audience?</label>
-                        <textarea id="audience" name="Target Audience" class="form-textarea" placeholder="Describe your ideal customers or users..."></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="goal" class="form-label">What's your goal for the next 30 days?</label>
-                        <textarea id="goal" name="30-Day Goal" class="form-textarea" placeholder="What do you hope to accomplish in the next month?"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="skills" class="form-label">What skills are you currently missing?</label>
-                        <textarea id="skills" name="Missing Skills" class="form-textarea" placeholder="What expertise or skills would help you move faster?"></textarea>
-                        <p class="form-note">This helps us identify potential gaps in your team or knowledge</p>
-                    </div>
-
-                    <!-- Hidden fields for SheetMonkey -->
-                    <input type="hidden" name="Created" value="x-sheetmonkey-current-date-time" />
-                    <input type="hidden" name="Source" value="FounderBolt Website" />
-
-                    <button type="submit" class="submit-button" id="submitButton">
-                        <i class="fas fa-bolt"></i> Generate My Roadmap
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
         <!-- Why FounderBolt Section -->
         <section class="why-foundrai" id="why-foundrai">
             <h2 class="fade-in">Why FounderBolt</h2>
@@ -1552,70 +1383,6 @@
                 }, 3000);
             }, 500);
         });
-
-          document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('businessPlanForm');
-            const submitButton = document.getElementById('submitButton');
-            const successMessage = document.getElementById('successMessage');
-            
-            // Form submission handler
-            form.addEventListener('submit', function(e) {
-                // Validate required fields
-                const email = document.getElementById('email').value;
-                if (!email) {
-                    e.preventDefault();
-                    alert('Please enter your email address');
-                    document.getElementById('email').focus();
-                    return;
-                }
-                
-                // Show loading state
-                const originalText = submitButton.innerHTML;
-                submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating Your Roadmap...';
-                submitButton.disabled = true;
-                
-                // In a real implementation, we would handle the form submission
-                // with AJAX to prevent page redirect and show success message
-                // For now, we'll simulate a successful submission
-                
-                // Since we're using SheetMonkey's direct form action,
-                // the page will redirect after submission
-                // We'll add a small delay to show the loading state
-                setTimeout(function() {
-                    // This code will only run if the form submission fails
-                    // In case of success, the page will redirect to SheetMonkey
-                    submitButton.innerHTML = originalText;
-                    submitButton.disabled = false;
-                }, 3000);
-            });
-            
-            // Add subtle animations to form elements
-            const formElements = document.querySelectorAll('.form-input, .form-textarea');
-            formElements.forEach(element => {
-                element.addEventListener('focus', function() {
-                    this.parentElement.style.transform = 'translateY(-2px)';
-                });
-                
-                element.addEventListener('blur', function() {
-                    this.parentElement.style.transform = 'translateY(0)';
-                });
-            });
-            
-            // Check if we're returning from a successful submission
-            // This would require server-side logic to set a parameter
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.get('submitted') === 'true') {
-                successMessage.classList.add('show');
-                // Scroll to success message
-                successMessage.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
     </script>
 </body>
 </html>
-
-
-
-
-
-
